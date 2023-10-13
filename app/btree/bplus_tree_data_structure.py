@@ -13,7 +13,7 @@ class BTreeNode:
 class BTree:
     def __init__(self, t, field="ID"):
         self.root = BTreeNode(True)
-        self.t = math.floor(t / 2)
+        self.t = t
         self.field = field
 
     # Insert node

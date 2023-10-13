@@ -37,8 +37,10 @@ def open_file_dialog():
 
 def build_visual_tree():
     global b_tree
+    deg = int(maxDegEntry.get())
+    print(deg)
     field = selectedKey.get()
-    b_tree = BTree(t=6, field=field)
+    b_tree = BTree(t=deg, field=field)
     tree_keys = list(data["ID"])
     tree_names = list(data["Name"])
     tree_scores = list(data["Score"])
@@ -240,6 +242,9 @@ selectedKey = StringVar()
 keyMenu = OptionMenu(inputFrame, selectedKey, *keys, command=select_key)
 
 buildTreeButton = Button(inputFrame, text="Dựng cây", command=build_visual_tree)
+maxDegLabel = Label(inputFrame, text="Nhập min degree", font=('arial', 16), bg='white', fg='black')
+maxDegEntry = Entry(inputFrame)
+
 
 # Search area
 searchAreaLabel = Label(inputFrame, text="Tìm kiếm", font=('consolas', 20), bg='white', fg='black', pady=10, padx=20)
@@ -268,7 +273,7 @@ resultVar = StringVar()
 resultVar.set("")
 resultAreaLabel = Label(resultFrame, text="Kết quả", font=('Arial', 20), bg='white', fg='light green', pady=10, padx=20)
 resultLabel = Label(resultFrame, textvariable=resultVar, font=('consolas', 14), bg='white', fg='black', pady=10, padx=20)
-saveFile = Button(resultFrame, text="Lưu kết quả", command=write_file)
+saveFile = Button(resultFrame, text="Lưu file", command=write_file)
 
 # Widgets placing
 openFileButton.grid(row=0,column=1)
@@ -277,24 +282,27 @@ keySelectLabel.grid(row=1, column=0)
 keyMenu.grid(row=1, column=1)
 buildTreeButton.grid(row=1, column=2)
 
-searchAreaLabel.grid(row=2, column=0, columnspan=3)
-searchValueLabel.grid(row=3, column=0)
-searchValueEntry.grid(row=3,column=1)
-runButton.grid(row=4, column=1)
+maxDegLabel.grid(row=2, column=0)
+maxDegEntry.grid(row=2, column=1)
 
-deleteAreaLabel.grid(row=5,column=0, columnspan=3)
-deleteValueLabel.grid(row=6,column=0)
-deleteValueEntry.grid(row=6,column=1)
-runDeleteButton.grid(row=7,column=1)
+searchAreaLabel.grid(row=3, column=0, columnspan=3)
+searchValueLabel.grid(row=4, column=0)
+searchValueEntry.grid(row=4,column=1)
+runButton.grid(row=5, column=1)
 
-insertAreaLabel.grid(row=8,column=0, columnspan=3)
-idValueLabel.grid(row=9,column=0)
-idValueEntry.grid(row=10,column=0)
-nameValueLabel.grid(row=9,column=1)
-nameValueEntry.grid(row=10,column=1)
-scoreValueLabel.grid(row=9,column=2)
-scoreValueEntry.grid(row=10,column=2)
-runInsertButton.grid(row=11,column=1)
+deleteAreaLabel.grid(row=6,column=0, columnspan=3)
+deleteValueLabel.grid(row=7,column=0)
+deleteValueEntry.grid(row=7,column=1)
+runDeleteButton.grid(row=8,column=1)
+
+insertAreaLabel.grid(row=9,column=0, columnspan=3)
+idValueLabel.grid(row=10,column=0)
+idValueEntry.grid(row=11,column=0)
+nameValueLabel.grid(row=10,column=1)
+nameValueEntry.grid(row=11,column=1)
+scoreValueLabel.grid(row=10,column=2)
+scoreValueEntry.grid(row=11,column=2)
+runInsertButton.grid(row=12,column=1)
 
 resultAreaLabel.pack()
 resultLabel.pack()
